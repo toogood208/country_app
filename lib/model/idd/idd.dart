@@ -1,18 +1,21 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Idd {
+  String? root;
+  List<String>? suffixes;
 
-part 'idd.freezed.dart';
-part 'idd.g.dart';
+  Idd({this.root, this.suffixes});
 
-@Freezed()
-class Idd with _$Idd{
-  @JsonSerializable(explicitToJson: true)
-  const factory Idd({
-    required String bgoogleMaps,
-    required String openStreetMaps,
-  }) = _Idd;
-   factory Idd.fromJson(Map<String, dynamic> json) => _$IddFromJson(json);
+  Idd.fromJson(Map<String, dynamic> json) {
+    root = json['root'];
+    // suffixes = json['suffixes'].cast<String>();
+    suffixes = json['suffixes'] == null
+        ? []
+        : List.from(json['suffixes'].map((x) => x));
+  }
 
-
-
-  
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['root'] = root;
+    data['suffixes'] = suffixes;
+    return data;
+  }
 }

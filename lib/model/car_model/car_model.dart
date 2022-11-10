@@ -1,17 +1,21 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Car {
+  List<String>? signs;
+  String? side;
 
-part 'car_model.freezed.dart';
-part 'car_model.g.dart';
+  Car({this.signs, this.side});
 
-enum Side { left, right }
+  Car.fromJson(Map<String, dynamic> json) {
+    // signs = json['signs'].cast<String>();
+    signs = json['signs'] == null
+        ? []
+        : List<String>.from(json['signs'].map((x) => x));
+    side = json['side'];
+  }
 
-@Freezed()
-class Car with _$Car {
-  @JsonSerializable(explicitToJson: true)
-  const factory Car({
-    @Default(<String>[]) List<String> signs,
-    required Side side,
-  }) = _Car;
-
-  factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['signs'] = signs;
+    data['side'] = side;
+    return data;
+  }
 }

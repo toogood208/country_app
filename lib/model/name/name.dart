@@ -1,20 +1,27 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import '../native_name/native_name.dart';
 
-import '../translation/translation.dart';
+class Name {
+  String? common;
+  String? official;
+  NativeName? nativeName;
 
-part 'name.freezed.dart';
-part 'name.g.dart';
+  Name({this.common, this.official, this.nativeName});
 
-@Freezed()
-class Name with  _$Name {
-  @JsonSerializable(explicitToJson: true)
- const factory Name({
-    required String common,
-    required String official,
-    @Default(<String,Translation>{}) Map<String, Translation>? nativeName
-    
-  }) = _Name;
+  Name.fromJson(Map<String, dynamic> json) {
+    common = json['common'];
+    official = json['official'];
+    nativeName = json['nativeName'] != null
+        ? NativeName.fromJson(json['nativeName'])
+        : null;
+  }
 
-   factory Name.fromJson(Map<String, dynamic> json) => _$NameFromJson(json);
-  
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['common'] = common;
+    data['official'] = official;
+    if (nativeName != null) {
+      data['nativeName'] = nativeName!.toJson();
+    }
+    return data;
+  }
 }

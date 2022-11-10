@@ -1,17 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'maps.freezed.dart';
-part 'maps.g.dart';
+class Maps {
+  String? googleMaps;
+  String? openStreetMaps;
 
-@Freezed()
-class Maps with _$Maps{
-  @JsonSerializable(explicitToJson: true)
-  const factory Maps({
-    required String bgoogleMaps,
-    required String openStreetMaps,
-  }) = _Maps;
-   factory Maps.fromJson(Map<String, dynamic> json) => _$MapsFromJson(json);
+  Maps({this.googleMaps, this.openStreetMaps});
 
+  Maps.fromJson(Map<String, dynamic> json) {
+    googleMaps = json['googleMaps'];
+    openStreetMaps = json['openStreetMaps'];
+  }
 
-
-  
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['googleMaps'] = googleMaps;
+    data['openStreetMaps'] = openStreetMaps;
+    return data;
+  }
 }

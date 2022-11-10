@@ -1,3 +1,5 @@
+import 'package:country_app/api/api.dart';
+import 'package:country_app/api/dio_client/dio_client.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,6 +51,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
+  getCountry() async {
+    final dio = const DioClient("https://restcountries.com/v3.1").create();
+    final api = CountryApiService(dio);
+    final string = api.getCountry();
+    print(string.toString());
+    return string;
+  }
+
+  @override
+  void initState() {
+    getCountry();
+    super.initState();
+  }
 
   void _incrementCounter() {
     setState(() {

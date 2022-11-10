@@ -1,15 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class PostalCode {
+  String? format;
+  String? regex;
 
-part 'postal_code.freezed.dart';
-part 'postal_code.g.dart';
-@Freezed()
-class PostalCode with _$PostalCode{
-  @JsonSerializable(explicitToJson: true)
-  const factory PostalCode({
-    required String format,
-    required String regex,
-  }) = _PostalCode;
+  PostalCode({this.format, this.regex});
 
-   factory PostalCode.fromJson(Map<String, dynamic> json) => _$PostalCodeFromJson(json);
+  PostalCode.fromJson(Map<String, dynamic> json) {
+    format = json['format'];
+    regex = json['regex'];
+  }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['format'] = format;
+    data['regex'] = regex;
+    return data;
+  }
 }

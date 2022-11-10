@@ -1,17 +1,18 @@
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Eng {
+  String? official;
+  String? common;
 
-part 'eng.freezed.dart';
-part 'eng.g.dart';
+  Eng({this.official, this.common});
 
-@Freezed()
-class Eng with _$Eng {
-  @JsonSerializable(explicitToJson: true)
- const factory Eng({
-    required String f,
-    required String m,
-  }) = _Eng;
-  factory Eng.fromJson(Map<String, dynamic> json) => _$EngFromJson(json);
+  Eng.fromJson(Map<String, dynamic> json) {
+    official = json['official'];
+    common = json['common'];
+  }
 
-  
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['official'] = official;
+    data['common'] = common;
+    return data;
+  }
 }

@@ -1,17 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class CapitalInfo {
+  List<double>? latlng;
 
-part 'capital_info_model.freezed.dart';
-part 'capital_info_model.g.dart';
+  CapitalInfo({this.latlng});
 
-@Freezed()
-class CapitalInfo with _$CapitalInfo{
+  CapitalInfo.fromJson(Map<String, dynamic> json) {
+    // latlng = json['latlng'].cast<double>();
+    latlng =
+        json['latlng'] == null ? [] : List.from(json['latlng'].map((x) => x));
+  }
 
-  @JsonSerializable(explicitToJson: true)
-  const factory  CapitalInfo({
-    @Default(<double>[]) List<double> latlng
-    })=_CapitalInfo;
-
-    factory CapitalInfo.fromJson(Map<String, dynamic> json) => _$CapitalInfoFromJson(json);
-
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['latlng'] = latlng;
+    return data;
+  }
 }
