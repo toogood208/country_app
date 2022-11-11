@@ -1,29 +1,116 @@
 import 'package:dio/dio.dart';
 
+import '../constants/endpoints.dart';
+
 class DioClient {
-  const DioClient(this._baseUrl);
-  final String _baseUrl;
+  final Dio _dio;
+  DioClient(this._dio) {
+    _dio
+      ..options.baseUrl = Endpoints.baseUrl
+      ..options.connectTimeout = Endpoints.connectionTimeout
+      ..options.responseType = ResponseType.json;
+  }
 
-  Dio create() => Dio(_createBaseOptions());
-
-  BaseOptions _createBaseOptions() => BaseOptions(
-        // Request base url
-        baseUrl: _baseUrl,
-
-        // Timeout in milliseconds for receiving data
-        receiveTimeout: 15000,
-
-        // Timeout in milliseconds for sending data
-        sendTimeout: 15000,
-
-        // Timeout in milliseconds for opening url
-        connectTimeout: 5000,
-
-        // Common query parameters for each request
-        queryParameters: <String, dynamic>{'parameter1': 'value1'},
-
-        // Common headers for each request
-        headers: <String, dynamic>{'header1': 'value1'},
+  // Get:-----------------------------------------------------------------------
+  Future<Response> get(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await _dio.get(
+        url,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
       );
-}
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
+  // Post:----------------------------------------------------------------------
+Future<Response> post(
+  String url, {
+  data,
+  Map<String, dynamic>? queryParameters,
+  Options? options,
+  CancelToken? cancelToken,
+  ProgressCallback? onSendProgress,
+  ProgressCallback? onReceiveProgress,
+}) async {
+  try {
+    final Response response = await _dio.post(
+      url,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+    return response;
+  } catch (e) {
+    rethrow;
+  }
+}
+// Put:-----------------------------------------------------------------------
+  Future<Response> put(
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await _dio.put(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+
+    
+  }
+
+  // Delete:--------------------------------------------------------------------
+  Future<dynamic> delete(
+    String url, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await _dio.delete(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return response.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
+
+}
