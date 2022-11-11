@@ -53,11 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   getCountry() async {
-    final dio = const DioClient("https://restcountries.com/v3.1").create();
-    final api = CountryApiService(dio);
-    final string = api.getCountry();
-    print(string.toString());
-    return string;
+  
   }
 
   @override

@@ -1,16 +1,21 @@
-import 'package:country_app/model/country_model/country_model.dart';
 import 'package:dio/dio.dart';
 
-class CountryApiService {
-  const CountryApiService(this._dio);
+import 'constants/endpoints.dart';
+import 'dio_client/dio_client.dart';
 
-  final Dio _dio;
+class CountryApi {
+  final DioClient dioClient;
 
-  Future<List<CountryModel>> getCountry() async {
-    final response = await _dio.get('/all');
-    final jsonResponse = response.data as List;
-    final f = jsonResponse.map((e) => CountryModel.fromJson(e)).toList();
-    print(f);
-    return f;
+  CountryApi({required this.dioClient});
+
+  Future<Response> getCountryApi() async {
+    try {
+      final Response response = await dioClient.get(Endpoints.all);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
   }
+
+ 
 }
