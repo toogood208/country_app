@@ -1,8 +1,9 @@
-import 'package:country_app/api/api.dart';
-import 'package:country_app/api/dio_client/dio_client.dart';
+import 'package:country_app/di/service_locator.dart';
+import 'package:country_app/view_model/country_view_model.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 
@@ -52,13 +53,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  getCountry() async {
-  
-  }
+  var viewModel = getIt<CountryViewModel>();
 
   @override
   void initState() {
-    getCountry();
+    viewModel.getCountries();
+
     super.initState();
   }
 
