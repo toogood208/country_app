@@ -13,7 +13,6 @@ class CountryRepository {
       final response = await countryApi.getCountryApi();
       final countries =
           (response.data as List).map((e) => CountryModel.fromJson(e)).toList();
-      print(countries);
       return countries;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();

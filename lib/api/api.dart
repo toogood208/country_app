@@ -16,6 +16,4 @@ class CountryApi {
       rethrow;
     }
   }
-
- 
 }
