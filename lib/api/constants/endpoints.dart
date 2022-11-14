@@ -9,4 +9,5 @@ class Endpoints {
   static const int connectionTimeout = 15000;
 
   static const String all = '/all';
+  static const String region = '/region/';
 }

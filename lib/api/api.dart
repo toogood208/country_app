@@ -16,4 +16,13 @@ class CountryApi {
       rethrow;
     }
   }
+
+   Future<Response> getRegion({required List<String> region}) async {
+    try {
+      final Response response = await dioClient.get("${Endpoints.region}/$region");
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

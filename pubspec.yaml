@@ -41,8 +41,9 @@ dependencies:
   flutter_screenutil: ^5.6.0
   google_fonts: ^3.0.1
   grouped_list: ^5.1.2
-  provider: 
-  textfield_search: ^0.10.0
+  stacked:
+  stacked_themes: ^0.3.9
+ 
 
 
 dev_dependencies:
@@ -70,6 +71,24 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   #assets:
+  assets:
+    - assets/fonts/
+
+  fonts:
+    - family: Axiforma
+      fonts:
+        - asset: assets/fonts/Axiforma-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Axiforma-Italic.otf
+          style: italic
+        - asset: assets/fonts/Axiforma-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Axiforma-Regular.otf
+          weight: 400
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
+          weight: 400
   
   #   - images/a_dot_ham.jpeg
 

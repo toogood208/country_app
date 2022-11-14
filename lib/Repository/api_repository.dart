@@ -19,4 +19,16 @@ class CountryRepository {
       throw errorMessage;
     }
   }
+
+  Future<List<CountryModel>> getRegion({required List<String> region}) async {
+    try {
+      final response = await countryApi.getRegion(region: region);
+      final countries =
+          (response.data as List).map((e) => CountryModel.fromJson(e)).toList();
+      return countries;
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 }
