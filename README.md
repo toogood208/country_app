@@ -1,16 +1,19 @@
 # country_app
 
 A new Flutter project.
+## Features
+1. The App is Scrollable, (List and Detail View)
+2. The App can display more than 10 items
+3. The App is Searchable;
+4. The App is able to filter by region
+5. The App can handle network issues
 
-## Getting Started
+## Challenges 
+Electricity issues
 
-This project is a starting point for a Flutter application.
+## Features I would love to add
+1. Better UI 
+2. Better network handling
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Link to appetise.io
+[app](https://appetize.io/app/i43ghyiptgxmgeci3iyaout26m?device=pixel4&osVersion=11.0&scale=75)
